@@ -44,4 +44,11 @@ public class Polynomial {
 		}
 		return result;
 	}
+	
+	public void multiply(double constant) {
+		for(Map.Entry<Integer, Double> monomial: this.coefficients.entrySet()) {
+			double coefficient = monomial.getValue(); 
+			monomial.setValue(coefficient * constant);
+		}
+	}
 }

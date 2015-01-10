@@ -8,14 +8,14 @@ import org.junit.Test;
 public class PolynomialBaseTest {
 
 	@Test
-	public void defaultConstructorTest() {
+	public void defaultConstructor() {
 		Polynomial p = new Polynomial();
 		Assert.assertEquals("Empty polynomial must have degree equals to 0", 0, p.getDeegree());
 	}
 	
 	
 	@Test
-	public void getAndSetCoefficientTest() {
+	public void getAndSetCoefficient() {
 		Polynomial p = new Polynomial();
 		
 		p.setCoefficent(0, 0.2);
@@ -37,14 +37,14 @@ public class PolynomialBaseTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class) 
-	public void getAndSetCoefficientTestArgumentsValidation() {
+	public void getAndSetCoefficientArgumentsValidation() {
 		Polynomial p = new Polynomial();
 		
 		p.setCoefficent(-1, 0.2);
 	}
 	
 	@Test
-	public void computeForTest() {
+	public void computeFor() {
 		// x^2 + 3x + 4 
 		Polynomial p = new Polynomial();
 		p.setCoefficent(2, 1);
@@ -52,6 +52,33 @@ public class PolynomialBaseTest {
 		p.setCoefficent(0, 4);
 		
 		Assert.assertEquals("x^2 + 3x + 4 =  14 for x = 2 instead is different", 14, p.computeFor(2), 0);
+	}
+	
+	@Test
+	public void multiply() {
+		
+		Random rnd = new Random(1234);
+		for(int d=0; d<100; d++) {
+			
+			int polinomialLength = rnd.nextInt(50);
+			
+			double x = rnd.nextDouble();
+			
+			// prepare polynomial
+			Polynomial p = new Polynomial();
+			for(int l=0; l<polinomialLength; l++) {
+				int deegree = rnd.nextInt(Integer.MAX_VALUE);
+				double coefficient = rnd.nextDouble();
+				p.setCoefficent(deegree, coefficient);
+			}
+			
+			double value = p.computeFor(x);
+			double multiplyFactor = rnd.nextInt(10) + rnd.nextDouble() - 5;  
+			
+			p.multiply(multiplyFactor);
+			
+			Assert.assertEquals("multiplication error", value * multiplyFactor, p.computeFor(x), 0);
+		}
 	}
 
 	
