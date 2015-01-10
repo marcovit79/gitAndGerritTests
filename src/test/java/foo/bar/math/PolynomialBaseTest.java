@@ -1,8 +1,9 @@
 package foo.bar.math;
 
+import java.util.Random;
+
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.Random;
 
 public class PolynomialBaseTest {
 
@@ -17,6 +18,9 @@ public class PolynomialBaseTest {
 	public void getAndSetCoefficientTest() {
 		Polynomial p = new Polynomial();
 		
+		p.setCoefficent(0, 0.2);
+		Assert.assertEquals("Setter or getter failed for degree 0", 0.2, p.getCoefficent(0), 0);
+		
 		Random rnd = new Random(1234);
 		for(int i=0; i<100; i++) {
 			int deegree = rnd.nextInt(Integer.MAX_VALUE);
@@ -24,8 +28,17 @@ public class PolynomialBaseTest {
 			
 			p.setCoefficent(deegree, coefficient);
 			Assert.assertEquals("Setter or getter failed for degree "+deegree, 
-				                           coefficient, p.getgetCoefficent(deegree));
+				                           coefficient, p.getCoefficent(deegree), 0);
 		}
+		
 	}
+	
+	@Test(expected=IllegalArgumentException.class) 
+	public void getAndSetCoefficientTestArgumentsValidation() {
+		Polynomial p = new Polynomial();
+		
+		p.setCoefficent(-1, 0.2);
+	}
+
 	
 }
