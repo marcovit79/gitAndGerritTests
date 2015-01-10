@@ -21,6 +21,9 @@ public class PolynomialBaseTest {
 		p.setCoefficent(0, 0.2);
 		Assert.assertEquals("Setter or getter failed for degree 0", 0.2, p.getCoefficent(0), 0);
 		
+		p.setCoefficent(10, 0.5);
+		Assert.assertEquals("Setter or getter failed for degree 10", 0.5, p.getCoefficent(10), 0);
+		
 		Random rnd = new Random(1234);
 		for(int i=0; i<100; i++) {
 			int deegree = rnd.nextInt(Integer.MAX_VALUE);
