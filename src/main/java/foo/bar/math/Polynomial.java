@@ -1,5 +1,6 @@
 package foo.bar.math;
 
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -15,7 +16,11 @@ public class Polynomial {
 	
 	public void setCoefficent(int deegree, double coefficient) {
 		this.checkDeegreeParameter(deegree);
-		this.coefficients.put(deegree, coefficient);
+		if(coefficient == 0.0) {
+			this.coefficients.remove(deegree);
+		} else {
+			this.coefficients.put(deegree, coefficient);
+		}
 	}
 	
 	public double getCoefficent(int deegree) {
@@ -30,6 +35,12 @@ public class Polynomial {
 	}
 	
 	public double computeFor(double x) {
-		throw new UnsupportedOperationException("not yet implemented");
+		double result = 0;
+		for(Map.Entry<Integer, Double> monome: this.coefficients.entrySet()) {
+			int degree = monome.getKey();
+			double coefficient = monome.getValue(); 
+			result = result + Math.pow(x, degree) * coefficient;
+		}
+		return result;
 	}
 }

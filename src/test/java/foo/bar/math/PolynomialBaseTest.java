@@ -42,6 +42,17 @@ public class PolynomialBaseTest {
 		
 		p.setCoefficent(-1, 0.2);
 	}
+	
+	@Test
+	public void computeForTest() {
+		// x^2 + 3x + 4 
+		Polynomial p = new Polynomial();
+		p.setCoefficent(2, 1);
+		p.setCoefficent(1, 3);
+		p.setCoefficent(0, 4);
+		
+		Assert.assertEquals("x^2 + 3x + 4 =  14 for x = 2 instead is different", 14, p.computeFor(2), 0);
+	}
 
 	
 }
