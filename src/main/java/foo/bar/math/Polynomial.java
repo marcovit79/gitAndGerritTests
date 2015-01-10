@@ -16,6 +16,7 @@ public class Polynomial {
 	
 	public void setCoefficent(int deegree, double coefficient) {
 		this.checkDeegreeParameter(deegree);
+		
 		if(coefficient == 0.0) {
 			this.coefficients.remove(deegree);
 		} else {
@@ -36,9 +37,9 @@ public class Polynomial {
 	
 	public double computeFor(double x) {
 		double result = 0;
-		for(Map.Entry<Integer, Double> monome: this.coefficients.entrySet()) {
-			int degree = monome.getKey();
-			double coefficient = monome.getValue(); 
+		for(Map.Entry<Integer, Double> monomial: this.coefficients.entrySet()) {
+			int degree = monomial.getKey();
+			double coefficient = monomial.getValue(); 
 			result = result + Math.pow(x, degree) * coefficient;
 		}
 		return result;
