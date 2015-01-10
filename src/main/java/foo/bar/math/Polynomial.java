@@ -3,7 +3,7 @@ package foo.bar.math;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Polinomial {
+public class Polynomial {
 
 	private final List<Double> coefficients = new ArrayList<Double>();
 	
